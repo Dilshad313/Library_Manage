@@ -1,79 +1,397 @@
+/* frontend/css/reports.css - Reports Page Styles */
+
 /* =========================
-   Root Variables
+   CSS Variables
 ========================= */
 :root {
   --primary-color: #6C63FF;
-  --secondary-color: #F5F5F5;
-  --text-color: #333;
-  --card-bg-color: #FFFFFF;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --border-radius: 8px;
+  --primary-dark: #5548CC;
+  --primary-light: #8B84FF;
+  --secondary-color: #F5F7FA;
+  --text-primary: #2C3E50;
+  --text-secondary: #7F8C8D;
+  --card-bg: #FFFFFF;
+  --border-color: #E0E6ED;
+  --success-color: #27AE60;
+  --success-light: #D5F4E6;
+  --info-color: #3498DB;
+  --info-light: #D6EAF8;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
   --transition-speed: 0.3s;
 }
 
 /* =========================
-   Base Styles
+   Reset & Base
 ========================= */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* =========================
+   Header
+========================= */
 header {
   display: flex;
   align-items: center;
-  padding: 20px 40px;
-  background-color: var(--primary-color);
+  gap: 20px;
+  padding: 24px 40px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 header h2 {
-  margin-left: 20px;
-  font-size: 24px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+header .btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+header .btn:hover {
+  background-color: white;
+  color: var(--primary-color);
+  transform: translateX(-4px);
 }
 
 /* =========================
-   Reports Section
+   Reports Container
 ========================= */
 .reports {
-  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
+/* =========================
+   Report Section
+========================= */
 .report-section {
-  background-color: var(--card-bg-color);
+  background-color: var(--card-bg);
   padding: 40px;
   border-radius: var(--border-radius);
-  box-shadow: 0 2px 4px var(--shadow-color);
+  box-shadow: var(--shadow-md);
   margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.report-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+}
+
+.report-section:nth-child(2)::before {
+  background: linear-gradient(90deg, var(--success-color), #52C27C);
 }
 
 .report-section h3 {
-  font-size: 20px;
-  color: var(--primary-color);
-  margin-bottom: 20px;
+  font-size: 22px;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+.report-section h3::before {
+  content: '';
+  width: 8px;
+  height: 32px;
+  background: linear-gradient(180deg, var(--primary-color), var(--primary-light));
+  border-radius: 4px;
+}
+
+.report-section:nth-child(2) h3::before {
+  background: linear-gradient(180deg, var(--success-color), #52C27C);
 }
 
 /* =========================
-   Report Tables
+   Report Stats
+========================= */
+.report-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #e8ecf1 100%);
+  padding: 24px;
+  border-radius: 10px;
+  text-align: center;
+  transition: all var(--transition-speed);
+  border: 2px solid transparent;
+}
+
+.stat-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-card h4 {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.stat-card p {
+  font-size: 32px;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* =========================
+   Report Table
 ========================= */
 .report-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
-.report-table th,
-.report-table td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
+.report-table thead {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #e8ecf1 100%);
 }
 
 .report-table th {
+  padding: 18px 20px;
+  text-align: left;
   font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
 }
-a{
-  text-decoration: none;
+
+.report-table th:first-child {
+  border-radius: 10px 0 0 0;
+}
+
+.report-table th:last-child {
+  border-radius: 0 10px 0 0;
+  text-align: center;
+}
+
+.report-table tbody tr {
+  transition: all var(--transition-speed);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.report-table tbody tr:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.01);
+}
+
+.report-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.report-table td {
+  padding: 20px;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.report-table td:last-child {
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 18px;
+}
+
+/* =========================
+   Ranking Badges
+========================= */
+.report-table tbody tr:nth-child(1) td:first-child::before {
+  content: '🥇 ';
+  margin-right: 8px;
+}
+
+.report-table tbody tr:nth-child(2) td:first-child::before {
+  content: '🥈 ';
+  margin-right: 8px;
+}
+
+.report-table tbody tr:nth-child(3) td:first-child::before {
+  content: '🥉 ';
+  margin-right: 8px;
+}
+
+/* =========================
+   Progress Bars
+========================= */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  border-radius: 4px;
+  transition: width 1s ease-out;
+}
+
+/* =========================
+   Empty State
+========================= */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state h4 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.empty-state p {
+  font-size: 15px;
+}
+
+/* =========================
+   Export Button
+========================= */
+.export-btn {
+  background-color: var(--success-color);
   color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.export-btn:hover {
+  background-color: #229954;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 768px) {
+  header {
+    padding: 20px;
+  }
+
+  header h2 {
+    font-size: 20px;
+  }
+
+  .reports {
+    padding: 24px 16px;
+  }
+
+  .report-section {
+    padding: 28px 20px;
+  }
+
+  .report-section h3 {
+    font-size: 18px;
+  }
+
+  .report-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .report-table th,
+  .report-table td {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  .stat-card p {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .report-section {
+    padding: 20px 16px;
+  }
+
+  .report-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .report-table th,
+  .report-table td {
+    padding: 12px;
+    font-size: 13px;
+  }
 }

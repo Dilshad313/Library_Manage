@@ -1,18 +1,33 @@
+/* frontend/css/style.css - Main Dashboard Styles */
+
 /* =========================
-   Root Variables
+   CSS Variables
 ========================= */
 :root {
   --primary-color: #6C63FF;
-  --secondary-color: #F5F5F5;
-  --text-color: #333;
-  --card-bg-color: #FFFFFF;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --border-radius: 8px;
+  --primary-dark: #5548CC;
+  --primary-light: #8B84FF;
+  --secondary-color: #F5F7FA;
+  --text-primary: #2C3E50;
+  --text-secondary: #7F8C8D;
+  --card-bg: #FFFFFF;
+  --success-color: #27AE60;
+  --success-light: #C8E6C9;
+  --danger-color: #E74C3C;
+  --danger-light: #FFCDD2;
+  --warning-color: #F39C12;
+  --warning-light: #FFF3CD;
+  --info-color: #3498DB;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --border-radius: 12px;
   --transition-speed: 0.3s;
+  --header-height: 80px;
 }
 
 /* =========================
-   Reset & Base Styles
+   Reset & Base
 ========================= */
 * {
   box-sizing: border-box;
@@ -21,152 +36,245 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
 /* =========================
-   Header / Topbar
+   Header & Navigation
 ========================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  box-shadow: var(--shadow-lg);
+}
+
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background-color: var(--primary-color);
   color: white;
-  box-shadow: 0 2px 4px var(--shadow-color);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .topbar h1 {
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .actions input {
-  padding: 10px;
+  padding: 12px 20px;
   border: none;
   border-radius: var(--border-radius);
-  font-size: 16px;
+  font-size: 15px;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.95);
+  transition: all var(--transition-speed);
+  box-shadow: var(--shadow-sm);
+}
+
+.actions input:focus {
+  outline: none;
+  width: 320px;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.actions input::placeholder {
+  color: var(--text-secondary);
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
   border-radius: var(--border-radius);
   background-color: white;
   color: var(--primary-color);
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color var(--transition-speed);
+  transition: all var(--transition-speed);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  display: inline-block;
 }
 
 .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
   background-color: var(--secondary-color);
 }
 
-/* =========================
-   Card Container
-========================= */
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 40px;
+.btn:active {
+  transform: translateY(0);
 }
 
 /* =========================
-   Card Styles
+   Main Content
+========================= */
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* =========================
+   Card Grid
+========================= */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  padding: 20px;
+}
+
+/* =========================
+   Book Cards
 ========================= */
 .card {
-  background-color: var(--card-bg-color);
+  background-color: var(--card-bg);
   border-radius: var(--border-radius);
-  box-shadow: 0 2px 4px var(--shadow-color);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
+  transition: all var(--transition-speed);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  transform: scaleX(0);
   transition: transform var(--transition-speed);
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
 }
 
 .cover {
   width: 100%;
-  height: 200px;
+  height: 240px;
   object-fit: cover;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .card-body {
-  padding: 20px;
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .author {
-  font-size: 16px;
-  color: #777;
-  margin-bottom: 10px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .genre-year {
-  font-size: 14px;
-  color: #999;
+  font-size: 13px;
+  color: var(--text-secondary);
   margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .status-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .status-badge {
-  padding: 5px 10px;
-  border-radius: var(--border-radius);
+  padding: 6px 14px;
+  border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .status-badge.available {
-  background-color: #C8E6C9;
-  color: #2E7D32;
+  background-color: var(--success-light);
+  color: var(--success-color);
 }
 
 .status-badge.borrowed {
-  background-color: #FFCDD2;
-  color: #C62828;
+  background-color: var(--danger-light);
+  color: var(--danger-color);
 }
 
 .due-text {
   font-size: 12px;
-  color: #999;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 /* =========================
-   Card Buttons
+   Card Actions
 ========================= */
 .card-actions {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: auto;
+  flex-wrap: wrap;
 }
 
 .btn-small {
-  padding: 8px 16px;
+  flex: 1;
+  min-width: 70px;
+  padding: 10px 16px;
   border: none;
-  border-radius: var(--border-radius);
-  font-size: 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color var(--transition-speed);
-}
-
-.danger {
-  background-color: #EF5350;
-  color: white;
+  transition: all var(--transition-speed);
+  text-align: center;
 }
 
 .borrow-btn {
@@ -174,15 +282,111 @@ body {
   color: white;
 }
 
+.borrow-btn:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.05);
+}
+
 .return-btn {
-  background-color: #FFCA28;
-  color: #333;
+  background-color: var(--warning-color);
+  color: white;
+}
+
+.return-btn:hover {
+  background-color: #E67E22;
+  transform: scale(1.05);
 }
 
 .edit-btn {
-  background-color: #42A5F5;
+  background-color: var(--info-color);
   color: white;
 }
-a{
-  text-decoration: none;
+
+.edit-btn:hover {
+  background-color: #2980B9;
+  transform: scale(1.05);
+}
+
+.danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.danger:hover {
+  background-color: #C0392B;
+  transform: scale(1.05);
+}
+
+/* =========================
+   Empty State
+========================= */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 1200px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .actions input {
+    width: 100%;
+    order: -1;
+  }
+
+  .actions input:focus {
+    width: 100%;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 10px;
+  }
+
+  .topbar h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 20px 10px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-actions {
+    flex-direction: column;
+  }
+
+  .btn-small {
+    width: 100%;
+  }
 }

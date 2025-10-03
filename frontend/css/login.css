@@ -1,100 +1,337 @@
+/* frontend/css/login.css - Authentication Page Styles */
+
 /* =========================
-   Root Variables
+   CSS Variables
 ========================= */
 :root {
   --primary-color: #6C63FF;
-  --secondary-color: #F5F5F5;
-  --text-color: #333;
-  --card-bg-color: #FFFFFF;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --border-radius: 8px;
+  --primary-dark: #5548CC;
+  --primary-light: #8B84FF;
+  --secondary-color: #F5F7FA;
+  --text-primary: #2C3E50;
+  --text-secondary: #7F8C8D;
+  --card-bg: #FFFFFF;
+  --border-color: #E0E6ED;
+  --focus-color: rgba(108, 99, 255, 0.2);
+  --success-color: #27AE60;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --border-radius: 12px;
   --transition-speed: 0.3s;
 }
 
 /* =========================
-   Base Styles
+   Reset & Base
 ========================= */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  padding: 20px;
 }
 
 /* =========================
-   Container
+   Auth Container
 ========================= */
 .auth-container {
-  background-color: var(--card-bg-color);
-  padding: 40px;
-  border-radius: var(--border-radius);
-  box-shadow: 0 2px 4px var(--shadow-color);
-  width: 900px;
-  max-width: 95%;
+  background-color: var(--card-bg);
+  padding: 48px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  width: 1000px;
+  max-width: 100%;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .auth-container h2 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 24px;
+  margin-bottom: 40px;
+  font-size: 32px;
   color: var(--primary-color);
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.auth-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+  border-radius: 2px;
 }
 
 /* =========================
-   Forms
+   Forms Grid
 ========================= */
 .auth-forms {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 48px;
+  position: relative;
 }
 
+.auth-forms::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--border-color), transparent);
+  transform: translateX(-50%);
+}
+
+/* =========================
+   Auth Forms
+========================= */
 .auth-form {
   display: flex;
   flex-direction: column;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .auth-form h3 {
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: var(--primary-color);
+  margin-bottom: 28px;
+  font-size: 24px;
+  color: var(--text-primary);
+  font-weight: 600;
+  text-align: center;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+  letter-spacing: 0.2px;
 }
 
 .auth-form input,
 .auth-form select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: var(--border-radius);
-  font-size: 16px;
+  padding: 14px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
   margin-bottom: 20px;
+  transition: all var(--transition-speed);
+  background-color: var(--secondary-color);
 }
 
+.auth-form input:focus,
+.auth-form select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: white;
+  box-shadow: 0 0 0 4px var(--focus-color);
+}
+
+.auth-form select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%237F8C8D' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+/* =========================
+   Submit Button
+========================= */
 .btn {
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
-  padding: 10px 20px;
+  padding: 16px 32px;
   font-size: 16px;
   font-weight: 600;
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
-  transition: background-color var(--transition-speed);
+  transition: all var(--transition-speed);
+  box-shadow: var(--shadow-sm);
+  margin-top: 12px;
 }
 
 .btn:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 /* =========================
-   Responsive
+   Form Highlights
 ========================= */
-@media (max-width: 768px) {
+.auth-form:first-child {
+  padding-right: 24px;
+}
+
+.auth-form:last-child {
+  padding-left: 24px;
+}
+
+.auth-form:first-child h3 {
+  color: var(--primary-color);
+}
+
+.auth-form:last-child h3 {
+  color: var(--success-color);
+}
+
+/* =========================
+   Additional Info
+========================= */
+.form-footer {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.form-footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-speed);
+}
+
+.form-footer a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* =========================
+   Password Strength Indicator
+========================= */
+.password-strength {
+  height: 4px;
+  background-color: var(--border-color);
+  border-radius: 2px;
+  margin-top: -16px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.password-strength-bar {
+  height: 100%;
+  width: 0%;
+  transition: all var(--transition-speed);
+  border-radius: 2px;
+}
+
+.password-strength-bar.weak {
+  width: 33%;
+  background-color: var(--danger-color);
+}
+
+.password-strength-bar.medium {
+  width: 66%;
+  background-color: var(--warning-color);
+}
+
+.password-strength-bar.strong {
+  width: 100%;
+  background-color: var(--success-color);
+}
+
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 900px) {
   .auth-forms {
     grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .auth-forms::before {
+    left: 0;
+    right: 0;
+    top: 50%;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+
+  .auth-form:first-child,
+  .auth-form:last-child {
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 16px;
+  }
+
+  .auth-container {
+    padding: 32px 24px;
+  }
+
+  .auth-container h2 {
+    font-size: 26px;
+    margin-bottom: 32px;
+  }
+
+  .auth-form h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .auth-container {
+    padding: 24px 20px;
+  }
+
+  .auth-form input,
+  .auth-form select {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 14px 24px;
+    font-size: 15px;
   }
 }

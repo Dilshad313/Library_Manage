@@ -37,8 +37,7 @@ if (memberForm) {
 
 async function editMember(id) {
   const name = prompt("New name");
-  const email = prompt("New email
-email");
+  const email = prompt("New emailemail");
   if (!name || !email) return;
   await fetch("/members", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, name, email, role: "student" }) });
   loadMembers();

@@ -1,125 +1,419 @@
+/* frontend/css/members.css - Members Page Styles */
+
 /* =========================
-   Root Variables
+   CSS Variables
 ========================= */
 :root {
   --primary-color: #6C63FF;
-  --secondary-color: #F5F5F5;
-  --text-color: #333;
-  --card-bg-color: #FFFFFF;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --border-radius: 8px;
+  --primary-dark: #5548CC;
+  --primary-light: #8B84FF;
+  --secondary-color: #F5F7FA;
+  --text-primary: #2C3E50;
+  --text-secondary: #7F8C8D;
+  --card-bg: #FFFFFF;
+  --border-color: #E0E6ED;
+  --focus-color: rgba(108, 99, 255, 0.2);
+  --danger-color: #E74C3C;
+  --info-color: #3498DB;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
   --transition-speed: 0.3s;
 }
 
 /* =========================
-   Base Styles
+   Reset & Base
 ========================= */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* =========================
+   Header
+========================= */
 header {
   display: flex;
   align-items: center;
-  padding: 20px 40px;
-  background-color: var(--primary-color);
+  gap: 20px;
+  padding: 24px 40px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 header h2 {
-  margin-left: 20px;
-  font-size: 24px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+header .btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+header .btn:hover {
+  background-color: white;
+  color: var(--primary-color);
+  transform: translateX(-4px);
+}
+
+/* =========================
+   Main Layout
+========================= */
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 /* =========================
    Members Panel
 ========================= */
 .members-panel {
-  display: flex;
-  gap: 40px;
-  padding: 40px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 32px;
+  align-items: start;
 }
 
 /* =========================
-   Form
+   Member Form
 ========================= */
 .member-form {
-  flex: 1;
-  background-color: var(--card-bg-color);
+  background-color: var(--card-bg);
   padding: 40px;
   border-radius: var(--border-radius);
-  box-shadow: 0 2px 4px var(--shadow-color);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 120px;
+}
+
+.member-form h3 {
+  font-size: 22px;
+  margin-bottom: 28px;
+  color: var(--primary-color);
+  font-weight: 600;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--secondary-color);
+}
+
+.member-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+  letter-spacing: 0.2px;
 }
 
 .member-form input,
 .member-form select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: var(--border-radius);
-  font-size: 16px;
-  margin-top: 5px;
+  padding: 14px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
   margin-bottom: 20px;
+  transition: all var(--transition-speed);
+  background-color: var(--secondary-color);
+}
+
+.member-form input:focus,
+.member-form select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: white;
+  box-shadow: 0 0 0 4px var(--focus-color);
+}
+
+.member-form select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%237F8C8D' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
 }
 
 .member-form .btn {
-  background-color: var(--primary-color);
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
-  padding: 10px 20px;
+  padding: 16px 32px;
   font-size: 16px;
   font-weight: 600;
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
-  transition: background-color var(--transition-speed);
+  transition: all var(--transition-speed);
+  box-shadow: var(--shadow-sm);
+  margin-top: 12px;
 }
 
 .member-form .btn:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.member-form .btn:active {
+  transform: translateY(0);
 }
 
 /* =========================
    Member List
 ========================= */
 .member-list {
-  flex: 2;
-  background-color: var(--card-bg-color);
+  background-color: var(--card-bg);
   padding: 40px;
   border-radius: var(--border-radius);
-  box-shadow: 0 2px 4px var(--shadow-color);
+  box-shadow: var(--shadow-md);
 }
 
+.member-list h3 {
+  font-size: 22px;
+  margin-bottom: 28px;
+  color: var(--text-primary);
+  font-weight: 600;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--secondary-color);
+}
+
+/* =========================
+   Member Table
+========================= */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+table thead {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #e8ecf1 100%);
+}
+
+table th {
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+table th:first-child {
+  border-radius: 10px 0 0 0;
+}
+
+table th:last-child {
+  border-radius: 0 10px 0 0;
+}
+
+table tbody tr {
+  transition: all var(--transition-speed);
+  border-bottom: 1px solid var(--border-color);
+}
+
+table tbody tr:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.01);
+}
+
+table tbody tr:last-child {
+  border-bottom: none;
+}
+
+table td {
+  padding: 18px 20px;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+table td:last-child {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* =========================
+   Buttons
+========================= */
+.btn-small {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-small:not(.danger) {
+  background-color: var(--info-color);
+  color: white;
+}
+
+.btn-small:not(.danger):hover {
+  background-color: #2980B9;
+  transform: scale(1.05);
+}
+
+.btn-small.danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn-small.danger:hover {
+  background-color: #C0392B;
+  transform: scale(1.05);
+}
+
+/* =========================
+   Member Item (Alternative List View)
+========================= */
 .member-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
-  border-bottom: 1px solid #eee;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  background-color: var(--secondary-color);
+  transition: all var(--transition-speed);
+  border: 2px solid transparent;
 }
 
-.member-item:last-child {
-  border-bottom: none;
+.member-item:hover {
+  border-color: var(--primary-color);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
 }
 
-.member-item button {
-  background-color: #EF5350;
-  color: white;
-  border: none;
-  border-radius: var(--border-radius);
-  padding: 8px 16px;
+.member-info h4 {
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.member-info p {
   font-size: 14px;
-  cursor: pointer;
-  transition: background-color var(--transition-speed);
+  color: var(--text-secondary);
 }
 
-.member-item button:hover {
-  opacity: 0.9;
+.member-item .member-actions {
+  display: flex;
+  gap: 10px;
 }
-a{
-  text-decoration: none;
-  color: white;
+
+/* =========================
+   Empty State
+========================= */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state h4 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.empty-state p {
+  font-size: 15px;
+}
+
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 1200px) {
+  .members-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .member-form {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 20px;
+  }
+
+  header h2 {
+    font-size: 20px;
+  }
+
+  main {
+    padding: 24px 16px;
+  }
+
+  .member-form,
+  .member-list {
+    padding: 28px 20px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  table th,
+  table td {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .member-form,
+  .member-list {
+    padding: 20px 16px;
+  }
+
+  table td:last-child {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-small {
+    width: 100%;
+    justify-content: center;
+  }
 }

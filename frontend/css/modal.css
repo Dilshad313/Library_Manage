@@ -1,0 +1,425 @@
+/* frontend/css/modal.css - Modal and Notification Styles */
+
+/* =========================
+   CSS Variables
+========================= */
+:root {
+  --primary-color: #6C63FF;
+  --primary-dark: #5548CC;
+  --text-primary: #2C3E50;
+  --text-secondary: #7F8C8D;
+  --card-bg: #FFFFFF;
+  --border-color: #E0E6ED;
+  --secondary-color: #F5F7FA;
+  --focus-color: rgba(108, 99, 255, 0.2);
+  --success-color: #27AE60;
+  --danger-color: #E74C3C;
+  --warning-color: #F39C12;
+  --info-color: #3498DB;
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+}
+
+/* =========================
+   Modal Overlay
+========================= */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   Modal Content
+========================= */
+.modal-content {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
+  position: relative;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   Modal Header
+========================= */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 2px solid var(--secondary-color);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #e8ecf1 100%);
+}
+
+.modal-header h3 {
+  font-size: 24px;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.modal-close:hover {
+  background-color: var(--danger-color);
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* =========================
+   Modal Body
+========================= */
+.modal-content form {
+  padding: 32px;
+}
+
+.modal-content .form-group {
+  margin-bottom: 24px;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all var(--transition-speed);
+  background-color: var(--secondary-color);
+}
+
+.modal-content input:focus,
+.modal-content select:focus,
+.modal-content textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: white;
+  box-shadow: 0 0 0 4px var(--focus-color);
+}
+
+.modal-content input[type="file"] {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.modal-content input[type="file"]::file-selector-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  margin-right: 10px;
+}
+
+.modal-content input[type="file"]::file-selector-button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* =========================
+   Input Row (Two Columns)
+========================= */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* =========================
+   Modal Actions
+========================= */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 2px solid var(--secondary-color);
+}
+
+.modal-actions .btn,
+.modal-actions .btn-alt {
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.modal-actions .btn {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+}
+
+.modal-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+}
+
+.modal-actions .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.modal-actions .btn-alt {
+  background-color: var(--secondary-color);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.modal-actions .btn-alt:hover {
+  background-color: var(--border-color);
+}
+
+/* =========================
+   File Preview
+========================= */
+.file-preview {
+  margin-top: 16px;
+  display: none;
+}
+
+.file-preview.active {
+  display: block;
+}
+
+.file-preview img {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--border-color);
+  object-fit: contain;
+}
+
+/* =========================
+   Notifications
+========================= */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  z-index: 10000;
+  min-width: 300px;
+  max-width: 500px;
+  opacity: 0;
+  transform: translateX(400px);
+  transition: all var(--transition-speed);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.notification::before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Notification Types */
+.notification-success {
+  background-color: var(--success-color);
+}
+
+.notification-success::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.notification-error {
+  background-color: var(--danger-color);
+}
+
+.notification-error::before {
+  content: '✕';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.notification-warning {
+  background-color: var(--warning-color);
+}
+
+.notification-warning::before {
+  content: '⚠';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.notification-info {
+  background-color: var(--info-color);
+}
+
+.notification-info::before {
+  content: 'ℹ';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 768px) {
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content {
+    max-height: 95vh;
+  }
+
+  .modal-header {
+    padding: 20px 24px;
+  }
+
+  .modal-header h3 {
+    font-size: 20px;
+  }
+
+  .modal-content form {
+    padding: 24px;
+  }
+
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-actions .btn,
+  .modal-actions .btn-alt {
+    width: 100%;
+  }
+
+  .notification {
+    left: 10px;
+    right: 10px;
+    min-width: auto;
+    max-width: none;
+  }
+}
+
+/* =========================
+   Scrollbar Styles
+========================= */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: var(--secondary-color);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}

@@ -3,11 +3,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Library Dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/modal.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -24,12 +26,18 @@
   </header>
 
   <main>
-    <section id="cards" class="card-container"></section>
+    <section id="cards" class="card-container">
+      <!-- Loading state -->
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading books...</p>
+      </div>
+    </section>
   </main>
 
   <template id="cardTpl">
     <div class="card">
-      <img class="cover" src="" alt="cover" />
+      <img class="cover" src="" alt="Book cover" />
       <div class="card-body">
         <h3 class="title"></h3>
         <p class="author"></p>
