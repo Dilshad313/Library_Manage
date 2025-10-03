@@ -1,0 +1,188 @@
+/* =========================
+   Root Variables
+========================= */
+:root {
+  --primary-color: #6C63FF;
+  --secondary-color: #F5F5F5;
+  --text-color: #333;
+  --card-bg-color: #FFFFFF;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+}
+
+/* =========================
+   Reset & Base Styles
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+/* =========================
+   Header / Topbar
+========================= */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.topbar h1 {
+  font-size: 24px;
+}
+
+.actions input {
+  padding: 10px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: white;
+  color: var(--primary-color);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+}
+
+/* =========================
+   Card Container
+========================= */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 40px;
+}
+
+/* =========================
+   Card Styles
+========================= */
+.card {
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  overflow: hidden;
+  transition: transform var(--transition-speed);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.author {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.genre-year {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.available {
+  background-color: #C8E6C9;
+  color: #2E7D32;
+}
+
+.status-badge.borrowed {
+  background-color: #FFCDD2;
+  color: #C62828;
+}
+
+.due-text {
+  font-size: 12px;
+  color: #999;
+}
+
+/* =========================
+   Card Buttons
+========================= */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.danger {
+  background-color: #EF5350;
+  color: white;
+}
+
+.borrow-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.return-btn {
+  background-color: #FFCA28;
+  color: #333;
+}
+
+.edit-btn {
+  background-color: #42A5F5;
+  color: white;
+}
+a{
+  text-decoration: none;
+}

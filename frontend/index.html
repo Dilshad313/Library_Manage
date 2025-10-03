@@ -1,0 +1,53 @@
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Library Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <h1>📚 Library Management</h1>
+      <div class="actions">
+        <input id="searchInput" placeholder="Search title or author..." />
+        <a href="/pages/AddBook.html" class="btn">➕ Add Book</a>
+        <a href="/pages/Members.html" class="btn">👥 Members</a>
+        <a href="/pages/Reports.html" class="btn">📊 Reports</a>
+        <a href="/pages/Login.html" class="btn" id="authBtn">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="cards" class="card-container"></section>
+  </main>
+
+  <template id="cardTpl">
+    <div class="card">
+      <img class="cover" src="" alt="cover" />
+      <div class="card-body">
+        <h3 class="title"></h3>
+        <p class="author"></p>
+        <p class="genre-year"></p>
+        <div class="status-row">
+          <span class="status-badge"></span>
+          <span class="due-text"></span>
+        </div>
+        <div class="card-actions">
+          <button class="borrow-btn btn-small">Borrow</button>
+          <button class="return-btn btn-small">Return</button>
+          <button class="edit-btn btn-small">Edit</button>
+          <button class="delete-btn btn-small danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="/js/books.js"></script>
+</body>
+</html>

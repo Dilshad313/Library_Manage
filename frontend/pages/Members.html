@@ -1,0 +1,44 @@
+<!-- frontend/pages/Members.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Members</title>
+  <link rel="stylesheet" href="/css/members.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <a href="/" class="btn">⬅ Back</a>
+    <h2>Members Management</h2>
+  </header>
+  <main>
+    <section class="members-panel">
+      <form id="memberForm" class="member-form">
+        <h3>Add New Member</h3>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="role">Role</label>
+        <select id="role" name="role">
+          <option value="student">Student</option>
+          <option value="staff">Staff</option>
+        </select>
+
+        <button type="submit" class="btn">Add Member</button>
+      </form>
+
+      <div id="memberList" class="member-list">
+        <h3>Current Members</h3>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/members.js"></script>
+</body>
+</html>

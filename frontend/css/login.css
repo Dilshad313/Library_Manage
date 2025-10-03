@@ -1,0 +1,100 @@
+/* =========================
+   Root Variables
+========================= */
+:root {
+  --primary-color: #6C63FF;
+  --secondary-color: #F5F5F5;
+  --text-color: #333;
+  --card-bg-color: #FFFFFF;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+}
+
+/* =========================
+   Base Styles
+========================= */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* =========================
+   Container
+========================= */
+.auth-container {
+  background-color: var(--card-bg-color);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  width: 900px;
+  max-width: 95%;
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+/* =========================
+   Forms
+========================= */
+.auth-forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+.auth-form input,
+.auth-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 768px) {
+  .auth-forms {
+    grid-template-columns: 1fr;
+  }
+}

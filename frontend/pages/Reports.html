@@ -1,0 +1,49 @@
+<!-- frontend/pages/Reports.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reports</title>
+  <link rel="stylesheet" href="/css/reports.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <a href="/" class="btn">⬅ Back</a>
+    <h2>Reports</h2>
+  </header>
+  <main class="reports">
+    <section class="report-section">
+      <h3>Top Borrowed Books</h3>
+      <table id="topBooks" class="report-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Borrow Count</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="report-section">
+      <h3>Active Members</h3>
+      <table id="activeMembers" class="report-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Borrow Count</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/js/reports.js"></script>
+</body>
+</html>
